@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdbHelper", "AdbHelper.csproj", "{FFC05405-736E-45D6-86DE-77A5A93B2C10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFC05405-736E-45D6-86DE-77A5A93B2C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC05405-736E-45D6-86DE-77A5A93B2C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC05405-736E-45D6-86DE-77A5A93B2C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC05405-736E-45D6-86DE-77A5A93B2C10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {657CE2D1-1DE9-4D90-97DE-77E8E449F7F5}
+	EndGlobalSection
+EndGlobal
