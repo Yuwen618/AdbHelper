@@ -61,6 +61,10 @@
             btnChangeHeight = new Button();
             btnkeyclear1 = new Button();
             btnclearkey2 = new Button();
+            btn_crashlog = new Button();
+            btn_scrcpy = new Button();
+            label2 = new Label();
+            btn_adbshell = new Button();
             SuspendLayout();
             // 
             // pushbtn
@@ -77,11 +81,11 @@
             // enablelogbtn
             // 
             enablelogbtn.Enabled = false;
-            enablelogbtn.Location = new Point(199, 38);
+            enablelogbtn.Location = new Point(164, 38);
             enablelogbtn.Name = "enablelogbtn";
             enablelogbtn.Size = new Size(75, 23);
             enablelogbtn.TabIndex = 0;
-            enablelogbtn.Text = "Enable log";
+            enablelogbtn.Text = "enable log";
             enablelogbtn.UseVisualStyleBackColor = true;
             enablelogbtn.Click += enablelogbtn_Click;
             // 
@@ -99,7 +103,7 @@
             // btn_homekey
             // 
             btn_homekey.Enabled = false;
-            btn_homekey.Location = new Point(108, 38);
+            btn_homekey.Location = new Point(88, 38);
             btn_homekey.Name = "btn_homekey";
             btn_homekey.Size = new Size(75, 23);
             btn_homekey.TabIndex = 0;
@@ -217,11 +221,11 @@
             // adbrebootbutton
             // 
             adbrebootbutton.Enabled = false;
-            adbrebootbutton.Location = new Point(287, 38);
+            adbrebootbutton.Location = new Point(240, 38);
             adbrebootbutton.Name = "adbrebootbutton";
             adbrebootbutton.Size = new Size(75, 23);
             adbrebootbutton.TabIndex = 0;
-            adbrebootbutton.Text = "Adb reboot";
+            adbrebootbutton.Text = "adb reboot";
             adbrebootbutton.UseVisualStyleBackColor = true;
             adbrebootbutton.Click += adbrebootbutton_Click;
             // 
@@ -358,15 +362,59 @@
             btnclearkey2.UseVisualStyleBackColor = true;
             btnclearkey2.Click += btnclearkey2_Click;
             // 
+            // btn_crashlog
+            // 
+            btn_crashlog.Enabled = false;
+            btn_crashlog.Location = new Point(392, 38);
+            btn_crashlog.Name = "btn_crashlog";
+            btn_crashlog.Size = new Size(75, 23);
+            btn_crashlog.TabIndex = 0;
+            btn_crashlog.Text = "show crash";
+            btn_crashlog.UseVisualStyleBackColor = true;
+            btn_crashlog.Click += btn_crashlog_Click;
+            // 
+            // btn_scrcpy
+            // 
+            btn_scrcpy.Enabled = false;
+            btn_scrcpy.Location = new Point(316, 38);
+            btn_scrcpy.Name = "btn_scrcpy";
+            btn_scrcpy.Size = new Size(75, 23);
+            btn_scrcpy.TabIndex = 0;
+            btn_scrcpy.Text = "scrcpy";
+            btn_scrcpy.UseVisualStyleBackColor = true;
+            btn_scrcpy.Click += btn_scrcpy_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 7F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(508, 269);
+            label2.Name = "label2";
+            label2.Size = new Size(37, 12);
+            label2.TabIndex = 2;
+            label2.Text = "By Bely";
+            // 
+            // btn_adbshell
+            // 
+            btn_adbshell.Enabled = false;
+            btn_adbshell.Location = new Point(468, 38);
+            btn_adbshell.Name = "btn_adbshell";
+            btn_adbshell.Size = new Size(75, 24);
+            btn_adbshell.TabIndex = 0;
+            btn_adbshell.Text = "adb shell";
+            btn_adbshell.UseVisualStyleBackColor = true;
+            btn_adbshell.Click += btn_adbshell_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(559, 271);
+            ClientSize = new Size(559, 287);
             Controls.Add(checkBox1);
             Controls.Add(hutime_label);
             Controls.Add(lable_device);
             Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textbox_log25);
             Controls.Add(textbox_log24);
@@ -379,6 +427,8 @@
             Controls.Add(textbox_log12);
             Controls.Add(textbox_log11);
             Controls.Add(textbox_apk_destination);
+            Controls.Add(btn_scrcpy);
+            Controls.Add(btn_crashlog);
             Controls.Add(btnstartlog2);
             Controls.Add(killpackagename1);
             Controls.Add(apk_to_install);
@@ -392,6 +442,7 @@
             Controls.Add(btnclearkey2);
             Controls.Add(btnkeyclear1);
             Controls.Add(btnChangeHeight);
+            Controls.Add(btn_adbshell);
             Controls.Add(btn_browse_apk2);
             Controls.Add(killbutton1);
             Controls.Add(btn_adb_install);
@@ -399,7 +450,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Form1";
-            Text = "AdbHelper - by bely  1.0";
+            Text = "AdbHelper";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -442,5 +493,9 @@
         private Button btnChangeHeight;
         private Button btnkeyclear1;
         private Button btnclearkey2;
+        private Button btn_crashlog;
+        private Button btn_scrcpy;
+        private Label label2;
+        private Button btn_adbshell;
     }
 }

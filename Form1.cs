@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.Devices;
 using Microsoft.VisualBasic.Logging;
 using System;
 using System.Diagnostics;
@@ -31,6 +32,8 @@ namespace AdbHelper
 
             this.Width = 568;
             this.Height = 110;
+            registerToShowEnableLogCmd();
+            //setLongClickForEnableLogBtn();
         }
 
         private void PushAPK_TextBox1_DragEnter(object sender, DragEventArgs e)
@@ -133,6 +136,10 @@ namespace AdbHelper
 
         private async void enablelogbtn_Click(object sender, EventArgs e)
         {
+            clickWatch.Stop();
+            longClickTimer.Stop();
+            clickWatch.Reset();
+
 
             await Task.Run(() =>
             {
@@ -142,6 +149,58 @@ namespace AdbHelper
                 RunCommand(" shell setprop persist.log.tag VERBOSE");
                 RunCommand(" logcat -c;adb logcat -G 250m");
             });
+        }
+
+        private void registerToShowEnableLogCmd()
+        {
+            ToolTip toolTip = new ToolTip();
+
+            toolTip.SetToolTip(enablelogbtn, "adb root\nadb remount\nadb shell setprop persist.log.tag Dlog\n" +
+                "adb shell setprop persist.log.tag VERBOSE\nadb logcat -c;adb logcat -G 250m");
+
+            toolTip.AutoPopDelay = 5000;
+            toolTip.InitialDelay = 100;
+            toolTip.ReshowDelay = 100;
+            toolTip.ShowAlways = true;
+        }
+
+        private Stopwatch clickWatch = new Stopwatch();
+        private System.Windows.Forms.Timer longClickTimer = new System.Windows.Forms.Timer();
+        private void setLongClickForEnableLogBtn()
+        {
+            
+            longClickTimer.Interval = 800;
+            longClickTimer.Tick += LongClickTimer_Tick;
+            enablelogbtn.MouseDown += enablelogbtn_MouseDown;
+            enablelogbtn.MouseUp += enablelogbtn_MouseUp;
+        }
+
+        private void enablelogbtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            clickWatch.Start();
+            longClickTimer.Start();
+        }
+
+        private void enablelogbtn_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            clickWatch.Stop();
+            longClickTimer.Stop();
+            clickWatch.Reset();
+        }
+
+        private void LongClickTimer_Tick(object sender, EventArgs e)
+        {
+            clickWatch.Stop();
+            longClickTimer.Stop();
+
+
+            if (clickWatch.ElapsedMilliseconds >= longClickTimer.Interval)
+            {
+                MessageBox.Show("dddd");
+            }
+            clickWatch.Reset();
+
         }
 
         private async void pushbtn_Click(object sender, EventArgs e)
@@ -297,6 +356,9 @@ namespace AdbHelper
             killbutton1.Enabled = enable;
             startlogbtn.Enabled = enable;
             btnstartlog2.Enabled = enable;
+            btn_crashlog.Enabled = enable;
+            btn_scrcpy.Enabled = enable;
+            btn_adbshell.Enabled = enable;
         }
 
         static string RunCommand(string command, bool nowindow)
@@ -450,7 +512,7 @@ namespace AdbHelper
         {
             if (this.Height == 110)
             {
-                this.Height = 312;
+                this.Height = 320;
                 btnChangeHeight.Text = "^";
             }
             else
@@ -540,6 +602,21 @@ namespace AdbHelper
             {
                 apk_to_install.Text = fileDialog.FileName;
             }
+        }
+
+        private async void btn_crashlog_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("adb shell \"logcat -b crash\"", false));
+        }
+
+        private async void btn_scrcpy_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("scrcpy", false));
+        }
+
+        private async void btn_adbshell_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("adb shell", false));
         }
     }
 }
