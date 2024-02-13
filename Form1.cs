@@ -31,7 +31,7 @@ namespace AdbHelper
             apk_to_install.DragDrop += InstallAPK_TextBox1_DragDrop;
 
             this.Width = 568;
-            this.Height = 110;
+            this.Height = 104;
             registerToShowEnableLogCmd();
             //setLongClickForEnableLogBtn();
         }
@@ -116,10 +116,7 @@ namespace AdbHelper
             {
                 keyword += " -e '" + textbox_log14.Text.Trim() + "'";
             }
-            if (!string.IsNullOrEmpty(textbox_log15.Text.Trim()))
-            {
-                keyword += " -e '" + textbox_log15.Text.Trim() + "'";
-            }
+
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("At least 1 keyword needed");
@@ -168,7 +165,7 @@ namespace AdbHelper
         private System.Windows.Forms.Timer longClickTimer = new System.Windows.Forms.Timer();
         private void setLongClickForEnableLogBtn()
         {
-            
+
             longClickTimer.Interval = 800;
             longClickTimer.Tick += LongClickTimer_Tick;
             enablelogbtn.MouseDown += enablelogbtn_MouseDown;
@@ -359,6 +356,13 @@ namespace AdbHelper
             btn_crashlog.Enabled = enable;
             btn_scrcpy.Enabled = enable;
             btn_adbshell.Enabled = enable;
+            btn_logcat_c.Enabled = enable;
+            btn_custombtn1.Enabled = enable;
+            btn_custombtn2.Enabled = enable;
+            if (!enable)
+            {
+                hutime_label.Text = "";
+            }
         }
 
         static string RunCommand(string command, bool nowindow)
@@ -510,14 +514,15 @@ namespace AdbHelper
 
         private void btnChangeHeight_Click(object sender, EventArgs e)
         {
-            if (this.Height == 110)
+            if (this.Height == 104)
             {
-                this.Height = 320;
+                this.Height = 132;
                 btnChangeHeight.Text = "^";
+                btn_height2.Text = "v";
             }
             else
             {
-                this.Height = 110;
+                this.Height = 104;
                 btnChangeHeight.Text = "v";
             }
         }
@@ -547,10 +552,7 @@ namespace AdbHelper
             {
                 keyword += " -e '" + textbox_log24.Text.Trim() + "'";
             }
-            if (!string.IsNullOrEmpty(textbox_log25.Text.Trim()))
-            {
-                keyword += " -e '" + textbox_log25.Text.Trim() + "'";
-            }
+
             if (string.IsNullOrEmpty(keyword))
             {
                 MessageBox.Show("at least 1 keyword needed");
@@ -566,7 +568,6 @@ namespace AdbHelper
             textbox_log12.Text = "";
             textbox_log13.Text = "";
             textbox_log14.Text = "";
-            textbox_log15.Text = "";
         }
 
         private void btnclearkey2_Click(object sender, EventArgs e)
@@ -575,7 +576,6 @@ namespace AdbHelper
             textbox_log22.Text = "";
             textbox_log23.Text = "";
             textbox_log24.Text = "";
-            textbox_log25.Text = "";
         }
 
         private void btnfindapk_Click(object sender, EventArgs e)
@@ -617,6 +617,40 @@ namespace AdbHelper
         private async void btn_adbshell_Click(object sender, EventArgs e)
         {
             await Task.Run(() => executecommand("adb shell", false));
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btn_logcat_c_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("adb shell logcat -c", true));
+        }
+
+        private async void btn_custombtn1_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("adb shell input keyevent " + text_customkey1.Text, true));
+        }
+
+        private async void btn_custombtn2_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => executecommand("adb shell input keyevent " + text_customkey2.Text, true));
+        }
+
+        private void btn_height2_Click(object sender, EventArgs e)
+        {
+            if (this.Height == 132)
+            {
+                this.Height = 338;
+                btn_height2.Text = "^";
+            }
+            else
+            {
+                this.Height = 132;
+                btn_height2.Text = "v";
+            }
         }
     }
 }
